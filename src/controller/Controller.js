@@ -11,7 +11,21 @@ export default function processClick(model, canvas, x, y) {
     for (var i = 1; i < model.board.size; i++) {
         for (var j = 1; j < model.board.size; j++) {
             if (isClickInsideCircle(x, y, 60*j, 60*i)){
-                model.board.group.setGroup(parseInt(i) ,parseInt(j));
+                if (model.board.isAllSameColor(i, j) !== "null" ){
+                    if (model.board.isAllSameColor(i, j)){
+                        model.board.group.setGroup(i,j);
+                        model.board.removeColorsInGroup(i,j);
+                        model.board.group.setGroup(undefined,undefined);
+                        model.moveCount +=1;
+                    }
+                    else{
+                        model.board.group.setGroup(parseInt(i) ,parseInt(j));
+                        model.moveCount +=1;
+                    }
+                    if (model.board.isSolved()){
+                        model.victory = true;
+                    }
+            }
             }
         }   
     }

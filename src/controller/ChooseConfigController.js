@@ -1,5 +1,6 @@
 
 export default function chooseConfig(model, config) {
+    model.moveCount = 0;
     model.setcurrentConfig(config);
-    console.log(model.currentConfig)
+    model.victory = false;
 }

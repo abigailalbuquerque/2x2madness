@@ -1,3 +1,3 @@
-export default function resetHandler(model, canvasObj) {
-    console.log ("IN RESET")
+export default function reset(model) {
+    model.reset();
 }

@@ -3,8 +3,9 @@ import './App.css';
 import Model from './model/Model.js'
 import redrawCanvas from './boundary/Boundary.js';
 import processClick from './controller/Controller.js';
-import resetHandler from './controller/ResetController.js';
+import reset from './controller/ResetController.js';
 import chooseConfig from './controller/ChooseConfigController';
+import rotate from './controller/RotateController';
 
 function App() {
   const [model, setModel] = React.useState(new Model())
@@ -32,7 +33,16 @@ function App() {
   const configHandler = (config) => {
     chooseConfig(model, config);
     forceRedraw(redraw+1) // react to changes, if model has changed.
-    console.log(model.currentConfig)
+  }
+
+  const resetHandler = (model) => {
+    reset(model);
+    forceRedraw(redraw+1) // react to changes, if model has changed.
+  }
+
+  const turnHandler = (model, direction) => {
+    rotate(model, direction);
+    forceRedraw(redraw+1) // react to changes, if model has changed.
   }
 
 
@@ -47,15 +57,15 @@ function App() {
         height="600"
         onClick={handleClick}
       />
-       <button className="reset_button" onClick={(e) => resetHandler(model, canvasRef.current)} >Reset</button>
+       <button className="reset_button" onClick={(e) => resetHandler(model)} >Reset</button>
        <label className='choose_config'>Choose your Configuration:</label>
        <button className="fourconfig" onClick={(e) => configHandler(4)} >4x4</button>
        <button className="fiveconfig" onClick={(e) => configHandler(5)} >5x5</button>
        <button className="sixconfig" onClick={(e) => configHandler(6)} >6x6</button>
        <label className='turn_buttons'>Turn your 2x2's:</label>
-       <button className="clockwise_button" onClick={(e) => resetHandler(model, canvasRef.current)} >Clockwise</button>
-       <button className="counter_clockwise_button" onClick={(e) => resetHandler(model, canvasRef.current)} >Counter Clockwise</button>
-       <label className='moves'>Moves: </label>
+       <button className="clockwise_button" onClick={(e) => turnHandler(model, 'clockwise')} >Clockwise</button>
+       <button className="counter_clockwise_button" onClick={(e) => turnHandler(model, 'counterclockwise')} >Counter Clockwise</button>
+       <label className="moves">{"Moves: " + model.moveCount}</label>
     </div>
   );
 }

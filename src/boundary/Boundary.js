@@ -19,9 +19,12 @@ export default function redrawCanvas(model, canvasObj, appObj) {
     for (let square of model.board.squares) {
         //Fills the squares with the appropriate colors
         ctx.beginPath()
-        ctx.fillStyle = square.color;
         ctx.rect(square.column * 60, square.row * 60, 60, 60);
-        ctx.fill();
+        if (square.color !== null){
+            ctx.fillStyle = square.color;
+            ctx.fill();
+
+        }
         ctx.lineWidth=2;
         ctx.stroke();
         ctx.closePath();
@@ -33,7 +36,6 @@ export default function redrawCanvas(model, canvasObj, appObj) {
         ctx.beginPath();
         let x = model.board.group.x
         let y = model.board.group.y
-        console.log(x,y);
         ctx.lineWidth=6;
         ctx.strokeStyle = "red";
         ctx.rect(y * 60,x * 60, 60, 60);
@@ -72,5 +74,12 @@ export default function redrawCanvas(model, canvasObj, appObj) {
         ctx.stroke();
         ctx.closePath();
         ctx.restore();
+    }
+
+    console.log(model.victory);
+    if (model.victory){
+        ctx.fillStyle = "red";
+        ctx.font = "30px Arial";
+        ctx.fillText("You Won!", 10, 50);
     }
 }
