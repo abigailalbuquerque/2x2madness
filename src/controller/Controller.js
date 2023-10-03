@@ -20,7 +20,6 @@ export default function processClick(model, canvas, x, y) {
                     }
                     else{
                         model.board.group.setGroup(parseInt(i) ,parseInt(j));
-                        model.moveCount +=1;
                     }
                     if (model.board.isSolved()){
                         model.victory = true;
