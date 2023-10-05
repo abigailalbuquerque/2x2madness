@@ -76,7 +76,6 @@ export default function redrawCanvas(model, canvasObj, appObj) {
         ctx.restore();
     }
 
-    console.log(model.victory);
     if (model.victory){
         ctx.fillStyle = "red";
         ctx.font = "30px Arial";

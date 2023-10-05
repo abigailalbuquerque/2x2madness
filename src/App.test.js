@@ -13,6 +13,7 @@ import { config_4x4, config_5x5, config_6x6 } from "./configs"
 
 import { isClickInsideCircle } from './controller/Controller.js';
 
+
 test('no moves when model created', () => {
   var model = new Model()
   model.setcurrentConfig(4)
