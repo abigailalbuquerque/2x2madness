@@ -21,7 +21,6 @@ function App() {
 
   const handleClick = (e) => {
     const canvasRect = canvasRef.current.getBoundingClientRect();
-
     // normalizing RAW point into localized canvas coordinates.
     let x = e.clientX - canvasRect.left
     let y = e.clientY - canvasRect.top
@@ -50,22 +49,23 @@ function App() {
       
     <div className="App">
      2X2 Madness 
-     <canvas tabIndex="1"  
+     <canvas tabIndex="1"
+        data-testid ="canvas"
         className="App-canvas"
         ref={canvasRef}
         width="600"
         height="600"
         onClick={handleClick}
       />
-       <button className="reset_button" onClick={(e) => resetHandler(model)} >Reset</button>
+       <button data-testid ="reset_button" className="reset_button" onClick={(e) => resetHandler(model)} >Reset</button>
        <label className='choose_config'>Choose your Configuration:</label>
-       <button className="fourconfig" onClick={(e) => configHandler(4)} >4x4</button>
-       <button className="fiveconfig" onClick={(e) => configHandler(5)} >5x5</button>
-       <button className="sixconfig" onClick={(e) => configHandler(6)} >6x6</button>
+       <button data-testid ="fourconfig" className="fourconfig" onClick={(e) => configHandler(4)} >4x4</button>
+       <button data-testid ="fiveconfig" className="fiveconfig" onClick={(e) => configHandler(5)} >5x5</button>
+       <button data-testid ="sixconfig" className="sixconfig" onClick={(e) => configHandler(6)} >6x6</button>
        <label className='turn_buttons'>Turn your 2x2's:</label>
-       <button className="clockwise_button" onClick={(e) => turnHandler(model, 'clockwise')} >Clockwise</button>
-       <button className="counter_clockwise_button" onClick={(e) => turnHandler(model, 'counterclockwise')} >Counter Clockwise</button>
-       <label className="moves">{"Moves: " + model.moveCount}</label>
+       <button data-testid ="clockwise_button" className="clockwise_button" onClick={(e) => turnHandler(model, 'clockwise')} >Clockwise</button>
+       <button data-testid ="counter_clockwise_button" className="counter_clockwise_button" onClick={(e) => turnHandler(model, 'counterclockwise')} >Counter Clockwise</button>
+       <label data-testid ="moves" className="moves">{"Moves: " + model.moveCount}</label>
     </div>
   );
 }

@@ -19,6 +19,7 @@ export default function processClick(model, canvas, x, y) {
                         model.moveCount +=1;
                     }
                     else{
+                        console.log("SELECT:" + i + "," + j)
                         model.board.group.setGroup(parseInt(i) ,parseInt(j));
                     }
                     if (model.board.isSolved()){
